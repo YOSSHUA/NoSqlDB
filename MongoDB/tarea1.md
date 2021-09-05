@@ -104,7 +104,7 @@ db.restaurants.find({}).sort({ name: -1 })
 ```
 27) Organizar el nombre de la cocina en orden ascendente y para ese mismo distrito de cocina debe estar en orden descendente.
 ``` javascript
-db.restaurants.find({}, {name:1, borough:1}).sort({  borough: -1, cuisine: 1})
+db.restaurants.find({}, {cuisine:1, borough:1}).sort({  borough: -1, cuisine: 1})
 ```
 28) Función find() para saber si todas las direcciones contienen la calle o no.
 ``` javascript
