@@ -75,7 +75,7 @@ db.restaurants.find(
 22) ID del restaurante, el nombre y las calificaciones de los restaurantes que obtuvieron una calificación de "A" y obtuvieron una puntuación de 11 en un ISODate "2014-08-11T00:00:00Z" entre muchas de las fechas de la encuesta.
 ``` javascript
 db.restaurants.find(
-    { "grades" : { $elemMatch : {"score" : 11,"date": ISODate("2014-08-11T00:00:00Z")} } , "grades.grade" : "A"},
+    { "grades.score" : 11, "grades.date": ISODate("2014-08-11T00:00:00Z")  , "grades.grade" : "A"},
     { restaurant_id: 1, name:1, "grades.grade":1}
 )
 ```
