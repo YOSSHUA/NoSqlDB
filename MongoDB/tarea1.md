@@ -68,7 +68,7 @@ db.restaurants.find(
 21) ID del restaurante, el nombre, el municipio y la cocina de aquellos restaurantes que prepararon platos excepto 'Americano' y 'Chinees' o el nombre del restaurante comienza con la letra 'Wil'.
 ``` javascript
 db.restaurants.find(
-    { $or: [ {"cuisine":{ $not: /American|Chinese/} }, {"name":/Wil/} ]},
+    { $or: [ {"cuisine":{ $not: /American|Chinese/} }, {"name":/^Wil/} ]},
     {restaurant_id: 1, name:1, borough:1, cuisine:1}
 )
 ```
