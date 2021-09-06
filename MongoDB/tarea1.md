@@ -13,8 +13,7 @@ db.restaurants.find(
 13) Restaurantes que no preparan ninguna cocina del continente americano y obtuvieron una calificación de 'A' que no pertenece al distrito de Brooklyn. El documento debe mostrarse según la cocina en orden descendente.
 ``` javascript
 db.restaurants.find(
-    {"cuisine":{$not:/American/}, "grades.grade": "A", "borough":{$not: /Brooklyn/} },
-    {"cuisine":1, "grades.grade":1, "borough":1}
+    {"cuisine":{$not:/American/}, "grades.grade": "A", "borough":{$not: /Brooklyn/} }
 ).sort({ cuisine: -1}) 
 ```
 14) Encontrar el ID del restaurante, el nombre, el municipio y la cocina de aquellos restaurantes que contienen 'Wil' como las primeras tres letras de su nombre.
