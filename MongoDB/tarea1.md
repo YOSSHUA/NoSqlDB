@@ -82,7 +82,7 @@ db.restaurants.find(
 23) ID del restaurante, el nombre y las calificaciones de aquellos restaurantes donde el segundo elemento de la matriz de calificaciones contiene una calificación de "A" y una puntuación de 9 en un ISODate "2014-08-11T00: 00: 00Z".
 ``` javascript
 db.restaurants.find(
-    { "grades" : { $elemMatch : {"score" : 9,"date": ISODate("2014-08-11T00:00:00Z")} } , "grades.1.grade" : "A"},
+    { "grades.1.score" : 9,"grades.1.date": ISODate("2014-08-11T00:00:00Z") , "grades.1.grade" : "A"},
     { restaurant_id: 1, name:1, "grades.grade":1}
 )
 ```
