@@ -40,7 +40,7 @@ db.restaurants.find(
 17) Restaurantes que pertenecen al municipio del Bronx y que prepararon platos estadounidenses o chinos.
 ``` javascript
 db.restaurants.find(
-    {"cuisine":/^American|Chinese/, "borough":"Bronx"},
+    {"cuisine":/^American|Chinese$/, "borough":"Bronx"},
     {restaurant_id: 1, name:1, borough:1, cuisine:1}
 )
 ```
