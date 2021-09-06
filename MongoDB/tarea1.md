@@ -135,11 +135,11 @@ db.restaurants.aggregate([
 ```
 31) Encontrar el nombre del restaurante, el municipio, la longitud y la actitud y la cocina de aquellos restaurantes que contienen "mon" como tres letras en algún lugar de su nombre.
 ``` javascript
-db.restaurants.find({name:/mon/}, {name:1, borough: 1, "address.coord":1, cuisine:1})
+db.restaurants.find({name:/mon/i}, {name:1, borough: 1, "address.coord":1, cuisine:1})
 ```
 32) Encontrar el nombre del restaurante, el distrito, la longitud y la latitud y la cocina de aquellos restaurantes que contienen 'Mad' como las primeras tres letras de su nombre.
 ``` javascript
-db.restaurants.find({name:/^Mad/}, {name:1, borough: 1, "address.coord":1, cuisine:1})
+db.restaurants.find({name:/^Mad/i}, {name:1, borough: 1, "address.coord":1, cuisine:1})
 ```
 
 
