@@ -61,7 +61,7 @@ db.restaurants.find(
 20) ID del restaurante, el nombre, el municipio y la cocina de aquellos restaurantes que obtuvieron una puntuación que no sea superior a 10.
 ``` javascript
 db.restaurants.find(
-    { "grades.score": { $lt: 10} },
+    { "grades.score": { $lte: 10} },
     {restaurant_id: 1, name:1, borough:1, cuisine:1}
 )
 ```
