@@ -401,7 +401,9 @@ Como podemos ver los 5 usuarios con más tiempo de registrarse en la muestra son
 <br/>
 
 
-
+Extraemos la hora y la clasificamos en los intervalos dados.
+Después agrupamos por país y por intervalo.
+Finalmente ordenamos el conteo y los primeros serían los más altos.
 ```javascript
 db.tweets.aggregate([
     {$project: {"user.lang":1, "created_at":1, "_id":0}},
@@ -439,6 +441,7 @@ Para ambos intervalos, el país con más tweets es de US.
 ## 4) De qué país son los tuiteros más famosos de nuestra colección?
 <br/>
 
+Aquí basta con ordenar respecto al número de seguidores y hacer un join para obtener el país.
 ```javascript
 db.tweets.aggregate([         
     {$project: {"user.followers_count":1, "user.lang":1}}, 
