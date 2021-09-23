@@ -389,7 +389,7 @@ db.tweets.aggregate([
     {$sort:{antiguedad: -1}},
     {$limit: 5},
     {$lookup: {from:"primarydialects","localField":"user.lang","foreignField":"lang","as":"language"}},
-	{$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
+    {$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
     {$project: {antiguedad: 1, "fulllocale.languages":1}}    
 ]);
 ```
@@ -427,7 +427,7 @@ db.tweets.aggregate([
     },
     {$group: {_id: {"lang":"$user.lang", "Intervalo":"$tipo"}, "usuarios":{$count: {}}}},
     {$lookup: {from:"primarydialects","localField":"_id.lang","foreignField":"lang","as":"language"}},
-	{$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
+    {$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
     {$project: {_id:1, usuarios:1, "fulllocale.languages":1}},
     {$sort: {"usuarios": -1}}
 ]);
@@ -449,7 +449,7 @@ db.tweets.aggregate([
     {$sort: {"user.followers_count":-1}},   
     {$limit: 10},
     {$lookup: {from:"primarydialects","localField":"user.lang","foreignField":"lang","as":"language"}},
-	{$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
+    {$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
     {$project: {_id:1,"user.followers_count":1, "fulllocale.languages":1}}
 ]);
 
