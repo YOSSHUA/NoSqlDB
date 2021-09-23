@@ -349,7 +349,7 @@ Entonces, los tuiteros de habla inglesa son los que más interactuan en la noche
 <br/>
 
 
-La idea es crear una fecha en formato ISODate a aprtir del string que tenemos del atributo user.created_at.
+La idea es crear una fecha en formato ISODate a partir del string que tenemos del atributo user.created_at.
 Una vez con ese campo, ejecutamos una diferencia en días entre hoy y la fecha que se obtuvo.
 Finalmente, hacemos un join para saber los países y lo ordenamos de acuerdo a la antiguedad.
 De esa manera, los primeros documentos serían los tuiteros más antiguos.
