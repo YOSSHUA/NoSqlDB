@@ -439,4 +439,17 @@ Para ambos intervalos, el país con más tweets es de US.
 ## 4) De qué país son los tuiteros más famosos de nuestra colección?
 <br/>
 
+```javascript
+db.tweets.aggregate([         
+    {$project: {"user.followers_count":1, "user.lang":1}}, 
+    {$sort: {"user.followers_count":-1}},   
+    {$limit: 10},
+    {$lookup: {from:"primarydialects","localField":"user.lang","foreignField":"lang","as":"language"}},
+	{$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
+    {$project: {_id:1,"user.followers_count":1, "fulllocale.languages":1}}
+]);
+
+```
+
+El resultado del query saca a la luz que los más famosos son de US con 850k, 450k y 289k seguidores.
 
