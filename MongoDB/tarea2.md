@@ -323,7 +323,10 @@ db.tweets.aggregate([
 <br/>
 
 ## Ejercicios
-1) Cómo podemos saber si los tuiteros hispanohablantes interactúan más en las noches?
+<br/>
+
+## 1) Cómo podemos saber si los tuiteros hispanohablantes interactúan más en las noches?
+<br/>
 
 Primero notamos que solo hay tweets a las 18, 19 y 20 horas en esta muestra.
 
@@ -340,7 +343,11 @@ db.tweets.aggregate([
 
 Entonces, los tuiteros de habla inglesa son los que más interactuan en la noche.
 
-2) Cómo podemos saber de dónde son los tuiteros que más tiempo tienen en la plataforma?
+<br/>
+
+## 2) Cómo podemos saber de dónde son los tuiteros que más tiempo tienen en la plataforma?
+<br/>
+
 
 La idea es crear una fecha en formato ISODate a aprtir del string que tenemos del atributo user.created_at.
 Una vez con ese campo, ejecutamos una diferencia en días entre hoy y la fecha que se obtuvo.
@@ -388,7 +395,11 @@ db.tweets.aggregate([
 Como podemos ver los 5 usuarios con más tiempo de registrarse en la muestra son de US con 5539, 5496, 5467, 5463, 5435 días.
 
 
-3) En intervalos de 7:00:00pm a 6:59:59am y de 7:00:00am a 6:59:59pm, de qué paises la mayoría de los tuits?
+<br/>
+
+## 3) En intervalos de 7:00:00pm a 6:59:59am y de 7:00:00am a 6:59:59pm, de qué paises la mayoría de los tuits?
+<br/>
+
 
 
 ```javascript
@@ -423,5 +434,9 @@ db.tweets.aggregate([
 Para ambos intervalos, el país con más tweets es de US.
 
 
-4) De qué país son los tuiteros más famosos de nuestra colección?
+<br/>
+
+## 4) De qué país son los tuiteros más famosos de nuestra colección?
+<br/>
+
 
