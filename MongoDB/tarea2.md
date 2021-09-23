@@ -338,7 +338,8 @@ Agrupamos por la hora y vamos a seleccionar la hora que es más tarde, es decir,
 db.tweets.aggregate([ 
     { $group: { _id: { "lang": "$user.lang", "hour": { $substr: ["$created_at", 11, 2] } }, "counter": { $count: {} } } }, 
     { $match: { "_id.hour": "20" } }, 
-    { $sort: {"counter":-1}}]);
+    { $sort: {"counter":-1}}
+]);
 ```
 
 Entonces, los tuiteros de habla inglesa son los que más interactuan en la noche.
