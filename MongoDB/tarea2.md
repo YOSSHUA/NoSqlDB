@@ -333,16 +333,16 @@ Primero notamos que solo hay tweets a las 18, 19 y 20 horas en esta muestra.
 ```javascript
 db.tweets.distinct("created_at").map(function(created_at){ return created_at.substring(11, 13)}).filter((v,i,a) => a.indexOf(v) == i);
 ```
-Agrupamos por la hora y vamos a seleccionar la hora que es más tarde, es decir, las 20.
+Agrupamos por la hora.
 ```javascript
 db.tweets.aggregate([ 
     { $group: { _id: { "lang": "$user.lang", "hour": { $substr: ["$created_at", 11, 2] } }, "counter": { $count: {} } } }, 
-    { $match: { "_id.hour": "20" } }, 
+    { $match: { "_id.lang":"es"} }, 
     { $sort: {"counter":-1}}
 ]);
 ```
 
-Entonces, los tuiteros de habla inglesa son los que más interactuan en la noche.
+Entonces, los tuiteros hispanohablantes interactuan más en la noche.
 
 <br/>
 
