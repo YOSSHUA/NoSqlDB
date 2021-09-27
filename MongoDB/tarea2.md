@@ -352,12 +352,11 @@ Entonces, los tuiteros hispanohablantes interactuan más en la noche.
 
 La idea es crear una fecha en formato ISODate a partir del string que tenemos del atributo user.created_at.
 Una vez con ese campo, ejecutamos una diferencia en días entre hoy y la fecha que se obtuvo.
-Finalmente, hacemos un join para saber los países y lo ordenamos de acuerdo a la antiguedad.
 De esa manera, los primeros documentos serían los tuiteros más antiguos.
 
 ```javascript
 db.tweets.aggregate([
-    {$project: {"user.lang":1, "user.created_at":1, "_id":0}},
+    {$project: {"user.time_zone":1, "user.created_at":1, "_id":0}},
     {
         $addFields: {
             "fecha":{ 
@@ -386,14 +385,11 @@ db.tweets.aggregate([
         }
     },
     {$addFields: { "antiguedad": { $dateDiff: { startDate: "$fecha", endDate: new ISODate(), unit: "day"} }}},
-    {$sort:{antiguedad: -1}},
-    {$limit: 5},
-    {$lookup: {from:"primarydialects","localField":"user.lang","foreignField":"lang","as":"language"}},
-    {$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
-    {$project: {antiguedad: 1, "fulllocale.languages":1}}    
+    {$sort:{antiguedad: -1}},         
+     {$project: {antiguedad: 1, "user.time_zone":1}}     
 ]);
 ```
-Como podemos ver los 5 usuarios con más tiempo de registrarse en la muestra son de US con 5539, 5496, 5467, 5463, 5435 días.
+Como podemos ver los 5 usuarios con más tiempo de registrarse en la muestra son de US & Canada con 5539, 5496, 5467, de Arizona 5463 y de US & Canada 5435 días.
 
 
 <br/>
