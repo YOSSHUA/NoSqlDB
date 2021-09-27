@@ -415,15 +415,13 @@ De los que no son nulos los que más tienen son de Brasilia de 7pm a 6:59:59am c
 Aquí basta con ordenar respecto al número de seguidores y hacer un join para obtener el país.
 ```javascript
 db.tweets.aggregate([         
-    {$project: {"user.followers_count":1, "user.lang":1}}, 
+    {$project: {"user.followers_count":1, "user.time_zone":1}}, 
     {$sort: {"user.followers_count":-1}},   
-    {$limit: 10},
-    {$lookup: {from:"primarydialects","localField":"user.lang","foreignField":"lang","as":"language"}},
-    {$lookup: {from:"languagenames","localField":"language.locale","foreignField":"locale","as":"fulllocale"}},
-    {$project: {_id:1,"user.followers_count":1, "fulllocale.languages":1}}
+    {$limit: 10},    
+    {$project: {_id:1,"user.followers_count":1, "user.time_zone":1}}
 ]);
 
 ```
 
-El resultado del query saca a la luz que los más famosos son de US con 850k, 450k y 289k seguidores.
+El resultado del query saca a la luz que en el top 3 los más famosos son de US & Canada con 850k, de London 450k y de US & Canada 289k seguidores.
 
