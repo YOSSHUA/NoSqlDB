@@ -402,7 +402,22 @@ Extraemos la hora y la clasificamos en los intervalos dados.
 Después agrupamos por país y por intervalo.
 Finalmente ordenamos el conteo y los primeros serían los más altos.
 ```javascript
-db.tweets.aggregate([ { $project: { "user.time_zone": 1, "created_at": 1, "_id": 0 } }, { $addFields: { "hora": { $toInt: { $substr: ["$created_at", 11, 2] } } } }, { $addFields: { "tipo": { $switch: { branches: [ { case: { $or: [{ $gte: ["$hora", 19] }, { $lte: ["$hora", 6] }] }, then: "7 PM - 6:59:59 AM" }], default: "7 AM - 6:59:59 PM" } } } }, { $group: { _id: { "country": "$user.time_zone", "Intervalo": "$tipo" }, "usuarios": { $count: {} } } },  { $sort: { "usuarios": -1 } }]);
+db.tweets.aggregate([ 
+    { $project: { "user.time_zone": 1, "created_at": 1, "_id": 0 } }, 
+    { $addFields: { "hora": { $toInt: { $substr: ["$created_at", 11, 2] } } } }, 
+    { $addFields: { 
+        "tipo": { 
+            $switch: { 
+                branches: [ 
+                    { case: { 
+                        $or: [{ $gte: ["$hora", 19] }, { $lte: ["$hora", 6] }] }, then: "7 PM - 6:59:59 AM" }], 
+                        default: "7 AM - 6:59:59 PM" 
+                } 
+            }       
+        } 
+    }, 
+    { $group: { _id: { "country": "$user.time_zone", "Intervalo": "$tipo" }, "usuarios": { $count: {} } } },  
+    { $sort: { "usuarios": -1 } }]);
 ```
 
 De los que no son nulos los que más tienen son de Brasilia de 7pm a 6:59:59am con 1312 y de 7AM a 6:59:59 PM los que más tienen también son de Brasilia con 1009.
